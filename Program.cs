@@ -7,7 +7,7 @@ namespace WCFHost
     {
         static void Main(string[] args)
         {
-            Uri httpUrl = new Uri("http://localhost:8000/WCFSample/ServiceCalc");
+            Uri httpUrl = new Uri("http://localhost:8000/WCFSample/IServiceCalc");
             ServiceHost host = new ServiceHost(typeof(WCFSample.ServiceCalc), httpUrl);
 
             host.AddServiceEndpoint(typeof(WCFSample.IServiceCalc), new WSHttpBinding(), "");
