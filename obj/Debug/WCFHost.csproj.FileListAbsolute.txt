@@ -1,8 +1,0 @@
-C:\Users\szafar\source\repos\WCFHost\bin\Debug\WCFHost.exe.config
-C:\Users\szafar\source\repos\WCFHost\bin\Debug\WCFHost.exe
-C:\Users\szafar\source\repos\WCFHost\bin\Debug\WCFHost.pdb
-C:\Users\szafar\source\repos\WCFHost\obj\Debug\WCFHost.csproj.AssemblyReference.cache
-C:\Users\szafar\source\repos\WCFHost\obj\Debug\WCFHost.csproj.CoreCompileInputs.cache
-C:\Users\szafar\source\repos\WCFHost\obj\Debug\WCFHost.csproj.Up2Date
-C:\Users\szafar\source\repos\WCFHost\obj\Debug\WCFHost.exe
-C:\Users\szafar\source\repos\WCFHost\obj\Debug\WCFHost.pdb
