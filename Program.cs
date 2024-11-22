@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using WCFSample;
+using WCFService;
 namespace WCFHost
 {
     internal class Program
@@ -10,12 +10,12 @@ namespace WCFHost
         {
             Uri baseAddress = new Uri("http://localhost:8000");
 
-            using (ServiceHost host = new ServiceHost(typeof(ServiceCalc), baseAddress))
+            using (ServiceHost host = new ServiceHost(typeof(NotificationService), baseAddress))
             {
                 try
                 {
                     host.AddServiceEndpoint(
-     typeof(IServiceCalc),
+     typeof(INotificationService),
      new BasicHttpBinding(),
      baseAddress);
 
