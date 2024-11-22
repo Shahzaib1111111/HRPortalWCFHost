@@ -1,25 +1,40 @@
 ﻿using System;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using WCFSample;
 namespace WCFHost
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Uri httpUrl = new Uri("http://localhost:8000/WCFSample/IServiceCalc");
-            ServiceHost host = new ServiceHost(typeof(WCFSample.ServiceCalc), httpUrl);
+            Uri baseAddress = new Uri("http://localhost:8000");
 
-            host.AddServiceEndpoint(typeof(WCFSample.IServiceCalc), new WSHttpBinding(), "");
+            using (ServiceHost host = new ServiceHost(typeof(ServiceCalc), baseAddress))
+            {
+                try
+                {
+                    host.AddServiceEndpoint(
+     typeof(IServiceCalc),
+     new BasicHttpBinding(),
+     baseAddress);
 
-            ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
-            smb.HttpGetEnabled = true;
-            host.Description.Behaviors.Add(smb);
+                    var smb = new ServiceMetadataBehavior
+                    {
+                        HttpGetEnabled = true,
+                    };
+                    host.Description.Behaviors.Add(smb);
 
-            host.Open();
-            Console.WriteLine("Service is host at " + DateTime.Now.ToString());
-            Console.WriteLine("Host is running... Press  key to stop");
-            Console.ReadLine();
+                    host.Open();
+                    Console.WriteLine("Service is running at {0}", baseAddress);
+                    Console.WriteLine("Press Enter to terminate the service.");
+                    Console.ReadLine();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
         }
     }
 }
