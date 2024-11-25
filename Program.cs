@@ -15,13 +15,13 @@ namespace WCFHost
                 try
                 {
                     host.AddServiceEndpoint(
-     typeof(INotificationService),
-     new BasicHttpBinding(),
-     baseAddress);
+                        typeof(INotificationService),
+                        new BasicHttpBinding(),
+                        "NotificationService");
 
                     var smb = new ServiceMetadataBehavior
                     {
-                        HttpGetEnabled = true,
+                        HttpGetEnabled = true
                     };
                     host.Description.Behaviors.Add(smb);
 
@@ -32,9 +32,18 @@ namespace WCFHost
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                    host.Abort();
+                }
+                finally
+                {
+                    if (host.State == CommunicationState.Opened)
+                    {
+                        host.Close();
+                    }
                 }
             }
+
         }
     }
 }
