@@ -23,6 +23,10 @@ namespace WCFHost
                     {
                         HttpGetEnabled = true
                     };
+                    host.Description.Behaviors.Remove(
+    typeof(ServiceDebugBehavior));
+                    host.Description.Behaviors.Add(
+                        new ServiceDebugBehavior { IncludeExceptionDetailInFaults = true });
                     host.Description.Behaviors.Add(smb);
 
                     host.Open();
